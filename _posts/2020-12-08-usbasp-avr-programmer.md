@@ -37,7 +37,7 @@ tags: [usbasp]     # TAG names should always be lowercase
 If you need a high resolution pdf copy of this schematic, Its available right here [USBasp_sch.pdf](https://github.com/Maven-Labs-In/blog/files/5689978/USBasp_sch.pdf)
 
 ## Build images
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Below you can find build images of programmer i built using only through whole components! I have omitted EEPROM and jumper to trigger standalone operation in the 1st version of the programmer constructed for simplicity :)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Below you can find build images of programmer i built using only 'through-hole' components! I have omitted EEPROM and jumper to trigger standalone operation in the 1st version of the programmer constructed for simplicity :)
 
 ![USBasp_build1](https://user-images.githubusercontent.com/75629402/102102554-3eeaf200-3e2c-11eb-894c-504e75b3274a.png)
 
