@@ -1,27 +1,55 @@
 ---
-title: 'The Matrix'
-date: 2020-12-20 10:41:30 +/-0530
-categories: [keys, keypad, atmega328p]
-tags: [matrix keypad]     # TAG names should always be lowercase
+title: Hello World
+date: 2020-12-20 16:02:15 +/-0530
+categories: [lcd, 16x2, 20x4, atmega328p]
+tags: [16x2-lcd]     # TAG names should always be lowercase
 ---
 
->“Unfortunately, no one can be told what The Matrix is. You'll have to see it for yourself.”
-― Morpheus
+![20x4_LCD](https://user-images.githubusercontent.com/75629402/103137053-e6d2ac00-46c5-11eb-88ae-e526fc3d0d58.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for this blog we could change it to something more meaningful like below :)
->“Unfortunately, no one can be told what The Matrix Keyboard is. You'll have to Do it for yourself, and learn.”
+## Background
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Hello World" is a C program written by Dennis Ritchie(The Inventor of C programming Language) in his book __The C Programming Language__ to showcase the capabilities of the C language to print a string "Hello World". In this blog we will tweak this famous program a bit and display "Hello World" message on a 20x4 LCD display.
 
-## Sensing Inputs
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MCU interacts with real world using sensors and actuators. In this blog, lets consider the sensors. There are different types of sensors that can be sensed by MCU to measure different parameters in real world for control purposes. 
+## The IO Problem with MCUs!!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; As explained in [keypad](../_site/posts/the-matrix) article, each new input or output addition to MCU requires usage of an IO pin. If we need to display numbers 0 to 9 then we need to interface a __seven segment display__! including the dot LED, we need a total of 8 IO pins to control a single digit display from MCU. imagine if we need to display a sentence as output in our application. That would require more than 300 IO pins from MCU. This is not a feasible design as MCU's will have very few IO pins. 
 
-## The 'Humble Switch'
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; One of the simplest input sensors we can read from the MCU is the 'digital switch'. 
+## HD44870 based LCD display
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is where __HD44870__ based character displays come to the rescue. They have a built in LCD controller which can control a variaty of LCD configurations as listed below. Datasheet for HD44780 controller is availble online [here](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf).
+- 16x1
+- 16x2
+- 20x4
 
-## Switch Configurations
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There are different configurations possible to connect switch to your MCU. Which variant to choose depends on the particular application or use case.
 
-### Switch with Pull-Up resistor
-![pull-up-switch](https://user-images.githubusercontent.com/75629402/102707478-95788600-429b-11eb-866a-8012506c15f6.png)
+## LCD interface pins
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HD44870 LCD controller based displays have 16 IO pins as listed below.
+
+| PIN | LCD | Nano |  Meaning            |   Connection                |
+|-----|------|------|---------------------|-----------------------------|
+| 1   | VSS  | VSS  | Ground pin          |   GND                       |
+| 2   | VDD  | VDD  | Supply pin          |   VCC                       |
+| 3   | VEE  |  -   | Contrast set pin    |   0.18V                     |
+| 4   | RS   | D8   | Register select pin |   HIGH/LOW based on need.   |
+| 5   | R/W  | GND  | Read/Write pin      |   GND                       |
+| 6   | E    | D9   | Execute pin         |   /Execute control line     |
+| 7   | D0   | D0   | LSB data pin        |   Parallel data d1 pin LSB  |
+| 8   | D1   | D1   | data pin            |   Data D2 pin               |
+| 9   | D2   | D2   | data pin            |   Data D3 pin               |
+| 10  | D3   | D3   | data pin            |   Data D4 pin               |
+| 11  | D4   | D4   | data pin            |   Data D5 pin               |
+| 12  | D5   | D5   | data pin            |   Data D6 pin               |
+| 13  | D6   | D6   | data pin            |   Data D7 pin               |
+| 14  | D7   | D7   | MSB data pin        |   Parallel data d7 pin MSB  |
+| 15  | LED+ |  -   | data pin            |   4.3V                      |
+| 16  | LED- |  -   | MSB data pin        |   GND                       |
+
+## HD44870 Interface v1: 8-bit mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pin configurations for LCD iunterfacing to atmega328p is shown above. 
+![8-bit-LCD-Interface](https://user-images.githubusercontent.com/75629402/103139790-227a6f80-46e0-11eb-87ea-849af11adb60.png)
+
+
+
+## HD44870 Interface v2: 4-bit mode.
+![4-bit-LCD-Interface](https://user-images.githubusercontent.com/75629402/103139843-e0056280-46e0-11eb-89cd-c0938b128a5c.png)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Here, a resistor is connected to switch and pulled up to supply. When the switch status is, 
  - Closed - Output is at Low-State. 
  - Open  &nbsp;&nbsp;  - Output is at High-State. 
