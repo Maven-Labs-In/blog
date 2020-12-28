@@ -62,14 +62,17 @@ tags: [matrix keypad]     # TAG names should always be lowercase
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's evaluate how the code can be constructed to decode the key pressed in matrix configuration. Row's and column's of 4x4 matrix keypad is connected to MCU as per below list.
 
 ### MCU port &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp;Keypad connections
-   - Row_0 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D0 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD0
-   - Row_1 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D1 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD1
-   - Row_2 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D2 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD2
-   - Row_3 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D3 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD3
-   - Col_3&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D4 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD4
-   - Col_2&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D5 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD5
-   - Col_1&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; D6 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD6
-   - Col_0&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;--> &nbsp;&nbsp;&nbsp;D7 &nbsp;&nbsp;&nbsp;-->&nbsp;&nbsp;&nbsp; PD7
+
+|   Keypad    |    Nano    |    atmega328p    |
+|-------------|------------|------------------|
+|    Row_0    |     D0     |        PD0       |
+|    Row_1    |     D1     |        PD1       |
+|    Row_2    |     D2     |        PD2       |
+|    Row_3    |     D3     |        PD3       |
+|    Col_3    |     D4     |        PD4       |
+|    Col_2    |     D5     |        PD5       |
+|    Col_1    |     D6     |        PD6       |
+|    Col_0    |     D7     |        PD7       |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We are using port D of atmega328p microcontroller for our interfacing of 4x4 keypad. Lower 4 bits(PD0-PD3) are used for Row connections and Upper 4 bits(PD4-PD7) are used for Column connections of keypad. This particular connection scheme makes the SW design a bit easier :)
 

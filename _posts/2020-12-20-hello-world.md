@@ -23,33 +23,85 @@ tags: [16x2-lcd]     # TAG names should always be lowercase
 ## LCD interface pins
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HD44870 LCD controller based displays have 16 IO pins as listed below.
 
-| PIN | LCD | Nano |  Meaning            |   Connection                |
-|-----|------|------|---------------------|-----------------------------|
-| 1   | VSS  | VSS  | Ground pin          |   GND                       |
-| 2   | VDD  | VDD  | Supply pin          |   VCC                       |
-| 3   | VEE  |  -   | Contrast set pin    |   0.18V                     |
-| 4   | RS   | D8   | Register select pin |   HIGH/LOW based on need.   |
-| 5   | R/W  | GND  | Read/Write pin      |   GND                       |
-| 6   | E    | D9   | Execute pin         |   /Execute control line     |
-| 7   | D0   | D0   | LSB data pin        |   Parallel data d1 pin LSB  |
-| 8   | D1   | D1   | data pin            |   Data D2 pin               |
-| 9   | D2   | D2   | data pin            |   Data D3 pin               |
-| 10  | D3   | D3   | data pin            |   Data D4 pin               |
-| 11  | D4   | D4   | data pin            |   Data D5 pin               |
-| 12  | D5   | D5   | data pin            |   Data D6 pin               |
-| 13  | D6   | D6   | data pin            |   Data D7 pin               |
-| 14  | D7   | D7   | MSB data pin        |   Parallel data d7 pin MSB  |
-| 15  | LED+ |  -   | data pin            |   4.3V                      |
-| 16  | LED- |  -   | MSB data pin        |   GND                       |
+|SLNO | LCD  | Meaning            |   Connection                |
+|-----|------|--------------------|-----------------------------|
+| 1   | VSS  |Ground pin          |   GND                       |
+| 2   | VDD  |Supply pin          |   VCC                       |
+| 3   | VEE  |Contrast set pin    |   0.18V                     |
+| 4   | RS   |Register select pin |   HIGH/LOW based on need.   |
+| 5   | R/W  |Read/Write pin      |   GND                       |
+| 6   | E    |Execute pin         |   /Execute control line     |
+| 7   | D0   |LSB data pin        |   Parallel data D0 pin LSB  |
+| 8   | D1   |data pin            |   Data D1 pin               |
+| 9   | D2   |data pin            |   Data D2 pin               |
+| 10  | D3   |data pin            |   Data D3 pin               |
+| 11  | D4   |data pin            |   Data D4 pin               |
+| 12  | D5   |data pin            |   Data D5 pin               |
+| 13  | D6   |data pin            |   Data D6 pin               |
+| 14  | D7   |MSB data pin        |   Parallel data D7 pin MSB  |
+| 15  | LED+ |data pin            |   4.3V                      |
+| 16  | LED- |MSB data pin        |   GND                       |
 
 ## HD44870 Interface v1: 8-bit mode.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pin configurations for LCD iunterfacing to atmega328p is shown above. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pin configurations for 8-bit LCD iunterfacing to atmega328p is shown below.
+### Schematic 
 ![8-bit-LCD-Interface](https://user-images.githubusercontent.com/75629402/103139790-227a6f80-46e0-11eb-87ea-849af11adb60.png)
 
+### Connections
 
+|SLNO | LCD  | Nano  |  328p  | Meaning            |   Connection                |
+|-----|------|------ |------- |--------------------|-----------------------------|
+| 1   | VSS  | VSS   |   -    |Ground pin          |   GND                       |
+| 2   | VDD  | VDD   |   -    |Supply pin          |   VCC                       |
+| 3   | VEE  |  -    |   -    |Contrast set pin    |   0.18V                     |
+| 4   | RS   | D8    |  PB0   |Register select pin |   HIGH/LOW based on need.   |
+| 5   | R/W  | GND   |   -    |Read/Write pin      |   GND                       |
+| 6   | E    | D9    |  PB1   |Execute pin         |   /Execute control line     |
+| 7   | D0   | D0    |  PD0   |LSB data pin        |   Parallel data D0 pin LSB  |
+| 8   | D1   | D1    |  PD1   |data pin            |   Data D1 pin               |
+| 9   | D2   | D2    |  PD2   |data pin            |   Data D2 pin               |
+| 10  | D3   | D3    |  PD3   |data pin            |   Data D3 pin               |
+| 11  | D4   | D4    |  PD4   |data pin            |   Data D4 pin               |
+| 12  | D5   | D5    |  PD5   |data pin            |   Data D5 pin               |
+| 13  | D6   | D6    |  PD6   |data pin            |   Data D6 pin               |
+| 14  | D7   | D7    |  PD7   |MSB data pin        |   Parallel data D7 pin MSB  |
+| 15  | LED+ |  -    |   -    |data pin            |   4.3V                      |
+| 16  | LED- |  -    |   -    |MSB data pin        |   GND                       |
 
 ## HD44870 Interface v2: 4-bit mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pin configurations for 4-bit LCD iunterfacing to atmega328p is shown below.
+### Schematic 
 ![4-bit-LCD-Interface](https://user-images.githubusercontent.com/75629402/103139843-e0056280-46e0-11eb-89cd-c0938b128a5c.png)
+
+### Connections
+
+|SLNO | LCD  | Nano  |  328p  | Meaning            |   Connection                |
+|-----|------|------ |------- |--------------------|-----------------------------|
+| 1   | VSS  | VSS   |   -    |Ground pin          |   GND                       |
+| 2   | VDD  | VDD   |   -    |Supply pin          |   VCC                       |
+| 3   | VEE  |  -    |   -    |Contrast set pin    |   0.18V                     |
+| 4   | RS   | D8    |  PB0   |Register select pin |   HIGH/LOW based on need.   |
+| 5   | R/W  | GND   |   -    |Read/Write pin      |   GND                       |
+| 6   | E    | D9    |  PB1   |Execute pin         |   /Execute control line     |
+| 7   | D4   | D4    |  PD4   |data pin            |   Nibble data D4 pin LSB    |
+| 8   | D5   | D5    |  PD5   |data pin            |   Data D5 pin               |
+| 9   | D6   | D6    |  PD6   |data pin            |   Data D6 pin               |
+| 10  | D7   | D7    |  PD7   |MSB data pin        |   Nibble data D7 pin MSB    |
+| 11  | LED+ |  -    |   -    |data pin            |   4.3V                      |
+| 12  | LED- |  -    |   -    |MSB data pin        |   GND                       |
+
+## HD44870 I2C Interface v3: 4-bit mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pin configurations for I2C 4-bit LCD iunterfacing to atmega328p is shown below.
+### Schematic 
+![I2C-LCD-Interface](https://user-images.githubusercontent.com/75629402/103227111-ea686c00-492d-11eb-81b7-fa8d0779ce56.png)
+
+### Connections
+
+|SLNO | LCD  | Nano  |  328p  | Meaning            |   Connection                |
+|-----|------|------ |------- |--------------------|-----------------------------|
+|  1  | SCL  | A5    |   -    |I2C clock pin       |   SCL                       |
+|  2  | SDA  | A4    |   -    |I2C data pin        |   SDA                       |
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Here, a resistor is connected to switch and pulled up to supply. When the switch status is, 
  - Closed - Output is at Low-State. 
  - Open  &nbsp;&nbsp;  - Output is at High-State. 
